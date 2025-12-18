@@ -3,7 +3,8 @@
 }
 
 body {
-  background: linear-gradient(to bottom, #1b2735 0%, #090a0f 100%);
+  background: #295899;
+background: linear-gradient(90deg,rgba(41, 88, 153, 1) 20%, rgba(17, 68, 156, 1) 50%, rgba(32, 102, 201, 1) 80%);
   min-height: 100vh;
   display: flex;
   justify-content: space-evenly;
@@ -17,69 +18,71 @@ body {
 
 .balls {
   position: absolute;
-  z-index: -10;
-  width: 100vw;
+  left: 0;
+  width: 30vw;
+  height: 100vh;
+}
+
+.balls2 {
+  position: absolute;
+  right: 0;
+  width: 30vw;
   height: 100vh;
 }
 
 .ornament {
+  position: absolute;
+  background-image: radial-gradient(circle at right bottom, rgba(0, 0, 0, .6), rgba(0, 0, 0, .0));
+  border-radius: 50%;
+  box-shadow: inset 5px 5px 1em rgba(255, 255, 255, .6);
+  height: 44px;
+  margin: 0 1em;
+  opacity: 0.5;
+  width: 44px;
+
+  &::before {
     position: absolute;
-    transform: translate(-50%, -50%);
-    background-color: #f06;
-    background-image: radial-gradient(circle at right bottom, rgba(0, 0, 0, .6), rgba(0, 0, 0, .0));
-    border-radius: 50%;
-    box-shadow: inset 5px 5px 1em rgba(255, 255, 255, .6);
-    height: 44px;
-    margin: 0 1em;
-    opacity: 0.5;
-    width: 44px;
+    content: "";
+    display: block;
+    width: 10px;
+    height: 5px;
+    top: -4px;
+    background-color: #fff;
+    left: 50%;
+    margin-left: -5px;
+    border-radius: 2px 2px 0 0;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
+  }
+
+  .hook {
+    position: absolute;
+    border-color: #fff;
+    height: 20px;
+    width: 10px;
+    border-width: 1px 1px 0 1px;
+    top: -24px;
+    border-style: solid;
+    border-radius: 50% 50% 0 0;
+    left: 21px;
 
     &::before {
-        position: absolute;
-        content: "";
-        display: block;
-        width: 10px;
-        height: 5px;
-        top: -4px;
-        background-color: #fff;
-        left: 50%;
-        margin-left: -5px;
-        border-radius: 2px 2px 0 0;
-        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
+      content: "";
+      display: block;
+      height: 50%;
+      background-color: #00aeef;
+      position: absolute;
+      bottom: 0;
+      width: 3px;
+      right: -2px;
     }
-
-    .hook {
-        position: absolute;
-        border-color: #fff;
-        height: 20px;
-        width: 10px;
-        border-width: 1px 1px 0 1px;
-        top: -24px;
-        border-style: solid;
-        border-radius: 50% 50% 0 0;
-        left: 21px;
-
-        &::before {
-            content: "";
-            display: block;
-            height: 50%;
-            background-color: #00aeef;
-            position: absolute;
-            bottom: 0;
-            width: 3px;
-            right: -2px;
-        }
-    }
+  }
 }
 
 h1 {
   color: white;
-  height: 5vh;
-}
-
-footer {
-  color: white;
-  height: 5vh;
+  height: 2vh;
+  font-size: 4em;
+  margin: 0;
 }
 
 .tree {
@@ -96,18 +99,15 @@ footer {
   height: 1vmin;
   font-weight: bold;
   color: green;
-  text-shadow: #fff 1px 0 10px;
+  text-shadow: #14690c46 0 0 10px;
   width: 1vmin;
   border-radius: 50%;
-  -webkit-animation: flash calc(var(--speed) * 1s) calc(var(--delay) * 1s)
-      infinite steps(4),
+  -webkit-animation: flash calc(var(--speed) * 1s) calc(var(--delay) * 1s) infinite steps(4),
     appear 0.5s calc(var(--appear) * 0.05s) both;
-  animation: flash calc(var(--speed) * 1s) calc(var(--delay) * 1s) infinite
-      steps(4),
+  animation: flash calc(var(--speed) * 1s) calc(var(--delay) * 1s) infinite steps(4),
     appear 0.5s calc(var(--appear) * 0.05s) both;
   left: 50%;
-  transform: translate(-50%, 50%) rotateY(calc(var(--rotate, 0) * 1deg))
-    translate3d(0, 0, calc(var(--radius, 0) * 1vmin));
+  transform: translate(-50%, 50%) rotateY(calc(var(--rotate, 0) * 1deg)) translate3d(0, 0, calc(var(--radius, 0) * 1vmin));
   bottom: calc(var(--y, 0) * 1%);
 }
 
@@ -127,31 +127,37 @@ footer {
   -webkit-animation: stroke 1s calc((var(--delay) * 0.95) * 0.05s) both;
   animation: stroke 1s calc((var(--delay) * 0.95) * 0.05s) both;
 }
+
 @-webkit-keyframes stroke {
   from {
     stroke-dashoffset: -1000;
   }
 }
+
 @keyframes stroke {
   from {
     stroke-dashoffset: -1000;
   }
 }
+
 @-webkit-keyframes spin {
   to {
     transform: rotateY(360deg);
   }
 }
+
 @keyframes spin {
   to {
     transform: rotateY(360deg);
   }
 }
+
 @-webkit-keyframes appear {
   from {
     opacity: 0;
   }
 }
+
 @keyframes appear {
   from {
     opacity: 0;
@@ -177,6 +183,7 @@ footer {
     transform: translateY(0) translateX(0) rotate(0deg);
     opacity: 1;
   }
+
   100% {
     transform: translateY(110vh) translateX(20px) rotate(360deg);
     opacity: 0.3;
